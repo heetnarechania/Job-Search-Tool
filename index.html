@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Job Search Tool</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <h1>🎓 Student Job Search</h1>
+            <p class="tagline">Find entry-level, new grad & internship opportunities tailored for students</p>
+        </header>
+
+        <!-- Main Tabs -->
+        <nav class="tabs">
+            <button class="tab-btn active" data-tab="search">🔍 Job Search</button>
+            <button class="tab-btn" data-tab="resume">📄 Resume Analyzer</button>
+        </nav>
+
+        <!-- Job Search Section -->
+        <section id="search" class="tab-content active">
+            <div class="search-form">
+                <!-- Job Title -->
+                <div class="form-group">
+                    <label for="jobTitle">Job Title</label>
+                    <input type="text" id="jobTitle" placeholder="e.g., Software Engineer, Data Analyst" autocomplete="off">
+                    <div id="roleSuggestions" class="suggestions-dropdown"></div>
+                </div>
+
+                <!-- Location Selection -->
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="country">Country</label>
+                        <select id="country">
+                            <option value="">Select Country</option>
+                            <option value="Canada">Canada</option>
+                            <option value="United States">United States</option>
+                            <option value="United Kingdom">United Kingdom</option>
+                            <option value="Australia">Australia</option>
+                            <option value="Germany">Germany</option>
+                            <option value="India">India</option>
+                            <option value="Remote">Remote (Worldwide)</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="city">City/Province</label>
+                        <select id="city" disabled>
+                            <option value="">Select City/Province</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Experience Level -->
+                <div class="form-group">
+                    <label>Experience Level</label>
+                    <div class="checkbox-group">
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="experience" value="new grad" checked>
+                            <span>New Grad</span>
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="experience" value="entry level" checked>
+                            <span>Entry Level</span>
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="experience" value="internship">
+                            <span>Internship</span>
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="experience" value="co-op">
+                            <span>Co-op</span>
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="experience" value="junior">
+                            <span>Junior</span>
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="experience" value="0-2 years">
+                            <span>0-2 Years</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Time Filter -->
+                <div class="form-group">
+                    <label for="timeFilter">Posted Within</label>
+                    <select id="timeFilter">
+                        <option value="d1">Past 24 hours</option>
+                        <option value="w1" selected>Past week</option>
+                        <option value="m1">Past month</option>
+                        <option value="">Any time</option>
+                    </select>
+                </div>
+
+                <!-- Job Boards -->
+                <div class="form-group">
+                    <label>Job Board</label>
+                    <div class="radio-group">
+                        <label class="radio-label">
+                            <input type="radio" name="jobBoard" value="linkedin.com/jobs" checked>
+                            <span>LinkedIn</span>
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="jobBoard" value="indeed.com/viewjob">
+                            <span>Indeed</span>
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="jobBoard" value="glassdoor.com/job-listing">
+                            <span>Glassdoor</span>
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="jobBoard" value="jobs.lever.co">
+                            <span>Lever</span>
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="jobBoard" value="boards.greenhouse.io">
+                            <span>Greenhouse</span>
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="jobBoard" value="myworkdayjobs.com">
+                            <span>Workday</span>
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="jobBoard" value="builtin.com/job">
+                            <span>BuiltIn</span>
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="jobBoard" value="ziprecruiter.com/jobs">
+                            <span>ZipRecruiter</span>
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="jobBoard" value="simplyhired.com/job">
+                            <span>SimplyHired</span>
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="jobBoard" value="dice.com/job-detail">
+                            <span>Dice</span>
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="jobBoard" value="monster.com/job-openings">
+                            <span>Monster</span>
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="jobBoard" value="wellfound.com/jobs">
+                            <span>Wellfound</span>
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="jobBoard" value="roberthalf.com/job">
+                            <span>Robert Half</span>
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="jobBoard" value="smartrecruiters.com/jobs">
+                            <span>SmartRecruiters</span>
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="jobBoard" value="icims.com/jobs">
+                            <span>iCIMS</span>
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="jobBoard" value="jobvite.com/jobs">
+                            <span>Jobvite</span>
+                        </label>
+                    </div>
+                </div>
+
+                <button id="searchBtn" class="btn-primary">🔍 Search Jobs</button>
+            </div>
+
+            <!-- Similar Roles Suggestions -->
+            <div id="similarRoles" class="similar-roles hidden">
+                <h3>💡 Similar Roles You Might Consider</h3>
+                <div id="similarRolesList" class="tags"></div>
+            </div>
+        </section>
+
+        <!-- Resume Analyzer Section -->
+        <section id="resume" class="tab-content">
+            <div class="resume-analyzer">
+                <!-- AI Model Selection (API key embedded) -->
+                <div class="form-group model-section">
+                    <label for="modelSelect">🤖 AI Model</label>
+                    <select id="modelSelect">
+                        <option value="meta-llama/llama-3.3-70b-instruct" selected>Llama 3.3 70B (Best Quality)</option>
+                        <option value="meta-llama/llama-3.1-70b-instruct">Llama 3.1 70B</option>
+                        <option value="meta-llama/llama-3.1-8b-instruct">Llama 3.1 8B (Faster)</option>
+                    </select>
+                    <small>Powered by AI • No API key needed</small>
+                </div>
+
+                <!-- Step 1: Upload Resume -->
+                <div class="step-section">
+                    <div class="step-header">
+                        <span class="step-number">1</span>
+                        <h3>Upload Your Resume</h3>
+                    </div>
+                    <div class="form-group">
+                        <label>📄 Choose Input Method</label>
+                        <div class="input-method-tabs">
+                            <button class="method-btn active" data-method="paste">Paste Text</button>
+                            <button class="method-btn" data-method="file">Upload PDF/DOCX</button>
+                            <button class="method-btn" data-method="linkedin">LinkedIn PDF</button>
+                        </div>
+                    </div>
+                    
+                    <div id="pasteMethod" class="input-method active">
+                        <div class="form-group">
+                            <textarea id="resumeText" rows="10" placeholder="Paste your resume text here... (Copy from Word, Google Docs, or any text source)"></textarea>
+                        </div>
+                    </div>
+                    
+                    <div id="fileMethod" class="input-method">
+                        <div class="form-group">
+                            <div class="file-upload-area" id="fileDropArea">
+                                <input type="file" id="resumeFile" accept=".pdf,.docx,.doc,.txt" hidden>
+                                <div class="upload-icon">📁</div>
+                                <p>Drag & drop your resume here</p>
+                                <p class="small">or <span class="link" onclick="document.getElementById('resumeFile').click()">browse files</span></p>
+                                <p class="small">Supports: PDF, DOCX, DOC, TXT</p>
+                            </div>
+                            <div id="fileInfo" class="file-info hidden"></div>
+                        </div>
+                    </div>
+                    
+                    <div id="linkedinMethod" class="input-method">
+                        <div class="form-group">
+                            <div class="linkedin-guide">
+                                <h4>📥 How to Download LinkedIn PDF</h4>
+                                <ol>
+                                    <li>Go to your <a href="https://www.linkedin.com/in/" target="_blank">LinkedIn Profile</a></li>
+                                    <li>Click "More" button below your profile photo</li>
+                                    <li>Select "Save to PDF"</li>
+                                    <li>Upload the downloaded PDF below</li>
+                                </ol>
+                            </div>
+                            <div class="file-upload-area" id="linkedinDropArea">
+                                <input type="file" id="linkedinFile" accept=".pdf" hidden>
+                                <div class="upload-icon">💼</div>
+                                <p>Drop LinkedIn PDF here</p>
+                                <p class="small">or <span class="link" onclick="document.getElementById('linkedinFile').click()">browse files</span></p>
+                            </div>
+                            <div id="linkedinFileInfo" class="file-info hidden"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 2: Job Description -->
+                <div class="step-section">
+                    <div class="step-header">
+                        <span class="step-number">2</span>
+                        <h3>Target Job Details</h3>
+                    </div>
+                    <div class="form-group">
+                        <label for="targetJob">🎯 Target Job Title <span class="required">*</span></label>
+                        <input type="text" id="targetJob" placeholder="e.g., Software Engineer, Data Analyst, Product Manager">
+                    </div>
+                    <div class="form-group">
+                        <label for="jobDescription">📋 Job Description <span class="required">*</span></label>
+                        <textarea id="jobDescription" rows="8" placeholder="Paste the complete job description here. This is essential for tailoring your resume with the right keywords and skills."></textarea>
+                        <small>💡 Tip: Include the full job posting for best results</small>
+                    </div>
+                </div>
+
+                <!-- Step 3: Resume Preferences -->
+                <div class="step-section">
+                    <div class="step-header">
+                        <span class="step-number">3</span>
+                        <h3>Resume Preferences</h3>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="resumeLength">📏 Resume Length</label>
+                            <select id="resumeLength">
+                                <option value="1" selected>1 Page (Recommended for Students)</option>
+                                <option value="2">2 Pages</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="resumeStyle">🎨 Resume Style</label>
+                            <select id="resumeStyle">
+                                <option value="professional" selected>Professional</option>
+                                <option value="modern">Modern</option>
+                                <option value="minimal">Minimal</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>📌 Sections to Include</label>
+                        <div class="checkbox-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="sections" value="summary" checked>
+                                <span>Professional Summary</span>
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="sections" value="skills" checked>
+                                <span>Skills</span>
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="sections" value="experience" checked>
+                                <span>Experience</span>
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="sections" value="education" checked>
+                                <span>Education</span>
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="sections" value="projects" checked>
+                                <span>Projects</span>
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="sections" value="certifications">
+                                <span>Certifications</span>
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="sections" value="awards">
+                                <span>Awards</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="button-group">
+                    <button id="analyzeBtn" class="btn-secondary">📊 Analyze Only</button>
+                    <button id="generateBtn" class="btn-primary">✨ Generate Tailored Resume</button>
+                </div>
+
+                <!-- Analysis Results -->
+                <div id="analysisResults" class="analysis-results hidden">
+                    <!-- ATS Score Card -->
+                    <div class="ats-score-card">
+                        <div class="score-header">
+                            <h3>📊 ATS Compatibility Score</h3>
+                            <div id="atsScoreCircle" class="score-circle-large">
+                                <span class="score-value">--</span>
+                                <span class="score-label">ATS Score</span>
+                            </div>
+                        </div>
+                        <div class="score-breakdown" id="scoreBreakdown"></div>
+                    </div>
+
+                    <!-- Keyword Match -->
+                    <div class="result-section">
+                        <h3>🔑 Keyword Analysis</h3>
+                        <div class="keyword-stats" id="keywordStats"></div>
+                        <div id="keywordMatch" class="result-content"></div>
+                    </div>
+
+                    <!-- Suggested Titles -->
+                    <div class="result-section">
+                        <h3>🎯 Recommended Job Titles</h3>
+                        <div id="suggestedTitles" class="result-content"></div>
+                    </div>
+
+                    <!-- Improvements -->
+                    <div class="result-section">
+                        <h3>✏️ Improvement Suggestions</h3>
+                        <div id="improvements" class="result-content"></div>
+                    </div>
+                </div>
+
+                <!-- Generated Resume Section -->
+                <div id="generatedResumeSection" class="generated-resume-section hidden">
+                    <div class="resume-header-bar">
+                        <h3>📄 Your Tailored Resume</h3>
+                        <div class="resume-actions">
+                            <button id="copyResumeBtn" class="btn-small">📋 Copy Text</button>
+                            <button id="downloadWordBtn" class="btn-small">📝 Download Word</button>
+                            <button id="downloadPdfBtn" class="btn-small btn-primary-small">⬇️ Download PDF</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Resume Preview -->
+                    <div id="resumePreview" class="resume-preview"></div>
+                    
+                    <!-- Before/After Comparison -->
+                    <div class="comparison-section">
+                        <h4>📝 Key Changes Made</h4>
+                        <div id="changesList" class="changes-list"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>Built for students, by students 🎓</p>
+            <p><small>Inspired by <a href="https://briansjobsearch.com/" target="_blank">Brian's Job Search</a></small></p>
+        </footer>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <script src="data/roles.js"></script>
+    <script src="data/locations.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
