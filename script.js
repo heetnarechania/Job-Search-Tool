@@ -182,8 +182,8 @@ generateBtn.addEventListener('click', async () => {
     await handleResumeAction('generate');
 });
 
-// Embedded API Key (for seamless user experience)
-const OPENROUTER_API_KEY = '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';
+// API calls are now proxied through Netlify serverless function
+// The API key is stored securely in Netlify environment variables
 
 // Global variable to store resume data for download
 let currentResumeData = null;
@@ -581,17 +581,15 @@ Generate the complete optimized resume as JSON only.`;
     return parseJSONResponse(response);
 }
 
-// Call OpenRouter API (supports Llama 3.3, Claude, GPT-4, Gemini, etc.)
+// Call OpenRouter API via Netlify serverless function (API key is secured server-side)
 async function callOpenAI(systemPrompt, userPrompt, maxTokens = 2000) {
     const model = document.getElementById('modelSelect')?.value || 'meta-llama/llama-3.3-70b-instruct';
     
-    const response = await fetch('https://openrouter.ai/api/v1/chat/completions', {
+    // Use Netlify serverless function to proxy the API call
+    const response = await fetch('/.netlify/functions/chat', {
         method: 'POST',
         headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${OPENROUTER_API_KEY}`,
-            'HTTP-Referer': window.location.href,
-            'X-Title': 'Student Job Search Tool'
+            'Content-Type': 'application/json'
         },
         body: JSON.stringify({
             model: model,
